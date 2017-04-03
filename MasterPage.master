@@ -1,0 +1,75 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<link rel="stylesheet" href="http://localhost:59601/WebSite1/css/bootstrap.css" type="text/css" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="background-color:#7fffee;margin:0;padding:0">
+<div class="container-fluid">
+    <form id="form1" runat="server">
+        <asp:LoginView ID="LoginView1" runat="server">
+            <LoggedInTemplate>
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Bine ai venit,<asp:LoginName ID="LoginName1" runat="server" /></a>
+            </div>
+            <div class="navbar-form navbar-left">
+                <div class="form-group">
+                    <asp:TextBox ID="TextBox1" runat="server" ontextchanged="TextBox1_TextChanged" class="form-control" placeholder="Cauta persoane"></asp:TextBox>
+                </div>
+                <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" Text="Cauta" onclick="Button1_Click" />
+            </div>
+            <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" CssClass="nav navbar-nav" StaticMenuStyle-CssClass="nav" StaticSelectedStyle-CssClass="active" >
+            <Items>
+                <asp:MenuItem NavigateUrl="index.aspx" Text="Acasa" Value="Acasa">
+                </asp:MenuItem>
+                <asp:MenuItem NavigateUrl="albums.aspx" Text="Albume" Value="Albume">
+                </asp:MenuItem>
+                <asp:MenuItem NavigateUrl="grupuri.aspx" Text="Grupuri" Value="Grupuri">
+                </asp:MenuItem>
+                <asp:MenuItem NavigateUrl="setari.aspx" Text="Setari" Value="Setari">
+                </asp:MenuItem>
+            </Items>
+            </asp:Menu>
+        <asp:LoginView ID="LoginView2" runat="server">
+              <RoleGroups>
+                        <asp:RoleGroup Roles="Admin/Moderator">
+                        <ContentTemplate>
+                            <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="admin.aspx">Sanctionari</asp:LinkButton>
+                        </ContentTemplate>
+                        </asp:RoleGroup>
+                </RoleGroups>
+        </asp:LoginView><asp:LoginStatus ID="LoginStatus1" runat="server" />
+        </nav>
+            </LoggedInTemplate>
+            <AnonymousTemplate>
+            <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <a href="http://localhost:59601/WebSite1/index.aspx"><img class="navbar-brand" style="height:100%"src="imagini/fatacarte.png" alt="Logo" /></a>
+            </div>
+            <div class="nav navbar-nav navbar-right" style="margin-top:2.5%;margin-right:2.5%;">
+<asp:Login ID="Login2" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" 
+            BorderPadding="4" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" 
+            Font-Size="0.8em" ForeColor="#333333" Orientation="Horizontal">
+            <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
+            <LoginButtonStyle BackColor="#FFFBFF" BorderColor="#CCCCCC" BorderStyle="Solid" 
+                BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#284775" />
+            <TextBoxStyle Font-Size="0.8em" />
+            <TitleTextStyle BackColor="#5D7B9D" Font-Bold="True" Font-Size="0.9em" 
+                ForeColor="White" />
+        </asp:Login>
+        </div></nav>
+            </AnonymousTemplate>
+        </asp:LoginView>
+        <br />
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
